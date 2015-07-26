@@ -43,6 +43,11 @@ class CopyValueBehavior extends Behavior
     public $maxLength = false;
 
     /**
+     * @var bool
+     */
+    public $forceCopy = false;
+
+    /**
      * Init
      */
     public function init()
@@ -50,7 +55,6 @@ class CopyValueBehavior extends Behavior
         if ($this->attributes == null) {
             throw new InvalidConfigException('Property "attributes" must be set');
         }
-
         parent::init();
     }
 
@@ -76,6 +80,7 @@ class CopyValueBehavior extends Behavior
 
         foreach ($this->attributes as $destination => $source) {
             if (is_array($source)) {
+
                 if (empty($source['attribute'])) {
                     throw new Exception('Where to get the data? Set key "attribute"!');
                 }
@@ -84,7 +89,7 @@ class CopyValueBehavior extends Behavior
                 $clearTags = (bool)isset($source['clearTags']) ? $source['clearTags'] : $this->clearTags;
                 $maxLength = isset($source['maxLength']) ? $source['maxLength'] : $this->maxLength;
 
-                if (empty($owner->{$destination}) && !empty($owner->{$sourceAttribute})) {
+                if ((empty($owner->{$destination}) || $this->forceCopy) && !empty($owner->{$sourceAttribute})) {
                     $value = $owner->{$sourceAttribute};
 
                     $value = $clearTags ? strip_tags($value) : $value;
@@ -93,7 +98,7 @@ class CopyValueBehavior extends Behavior
                     $owner->{$destination} = $value;
                 }
             } else {
-                if (empty($owner->{$destination}) && !empty($owner->{$source})) {
+                if ((empty($owner->{$destination}) || $this->forceCopy) && !empty($owner->{$source})) {
 
                     $value = $owner->{$source};
 
