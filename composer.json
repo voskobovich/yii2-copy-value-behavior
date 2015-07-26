@@ -1,0 +1,34 @@
+{
+  "name": "voskobovich/yii2-copy-value-behavior",
+  "description": "Behavior copies the values from one attribute to another for Yii2",
+  "keywords": [
+    "behavior",
+    "yii2",
+    "attributes",
+    "copy"
+  ],
+  "homepage": "https://github.com/voskobovich/yii2-copy-value-behavior",
+  "type": "yii2-behavior",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/voskobovich/yii2-copy-value-behavior/issues",
+    "source": "https://github.com/voskobovich/yii2-copy-value-behavior"
+  },
+  "authors": [
+    {
+      "name": "Vitaly Voskobovich",
+      "email": "vitaly@voskobovich.com",
+      "homepage": "http://voskobovich.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "voskobovich\\behaviors\\": ""
+    }
+  }
+}
